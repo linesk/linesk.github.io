@@ -1,7 +1,39 @@
 <!DOCTYPE html>
 <head>
-  <title>Hello Github Pages</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <title>Github Pages</title>
   <body>
-    <a href="https://docs.google.com/document/u/2/d/14RXf2x_MZwmk7MNCuPigz3RmOdvKYgWzRzzU67NrZTQ/copy">Admission template</a>
+    <div id="app">
+      <h1>Hi, {{name}}</h1>
+      <a href="https://docs.google.com/document/u/2/d/14RXf2x_MZwmk7MNCuPigz3RmOdvKYgWzRzzU67NrZTQ/copy">Admission template</a>
+      
+      <p>Hospital number is: {{ HN }}</p>
+      <input v-model="HN" placeholder="Edit me"/>
+      <button @click="gotopacs(HN)">Go to PACs</button>
+      
+    
+    
+    </div>
   </body>
+  <script>
+    const { createApp } = Vue
+    createApp({
+      data() {
+        return {
+          name: 'Ratchapoom',
+          HN: ""
+        }
+      },
+      methods: {
+        gotopacs(HN) {
+        // `this` inside methods points to the current active instance
+        
+          url = "http://pacskku/explore.asp?path=/All%20Patients/InternalPatientUID=" + HN.toUpperCase();
+          window.open("microsoft-edge:"+url);
+        }
+      }
+    }).mount('#app')
+  </script>
 </html>
