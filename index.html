@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <head>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+ <link href="/style.css" rel="stylesheet">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   
   <title>Github Pages</title>
   <body>
     <div id="app">
-      <h1>Hi, {{name}}</h1>
-      <a href="https://docs.google.com/document/u/2/d/14RXf2x_MZwmk7MNCuPigz3RmOdvKYgWzRzzU67NrZTQ/copy">Admission template</a>
+      <div class="">
+        <div class="">
+
+          <h1 class="text-3xl font-bold underline">Hi, {{name}}</h1>
+          <a href="https://docs.google.com/document/u/2/d/14RXf2x_MZwmk7MNCuPigz3RmOdvKYgWzRzzU67NrZTQ/copy">Admission template</a>
+          
+          <div>Hospital number is: {{ HN }} 
+            <input v-model="HN" placeholder="Edit me"/> 
+            <button class="" @click="gotopacs(HN)">Go to PACs</button>
+          </div>
+            
+          
       
-      <p>Hospital number is: {{ HN }}</p>
-      <input v-model="HN" placeholder="Edit me"/>
-      <button @click="gotopacs(HN)">Go to PACs</button>
-      
-    
-    
+        </div>
+      </div>
     </div>
   </body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script>
     const { createApp } = Vue
+    
     createApp({
       data() {
         return {
@@ -28,12 +40,11 @@
       },
       methods: {
         gotopacs(HN) {
-        // `this` inside methods points to the current active instance
-        
           url = "http://pacskku/explore.asp?path=/All%20Patients/InternalPatientUID=" + HN.toUpperCase();
           window.open("microsoft-edge:"+url);
         }
-      }
-    }).mount('#app')
+      },
+    },
+    ).mount('#app')
   </script>
 </html>
